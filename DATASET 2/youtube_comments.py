@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 # Load the .env file
 load_dotenv()
 # Get the API key
-api_key = os.getenv("DEVELOPER_API_KEY")
+DEVELOPER_API_KEY = os.getenv("DEVELOPER_API_KEY")
 
 print(f"My API key is: {api_key}")
 

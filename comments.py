@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 # Load the .env file
 load_dotenv()
 # Get the API key
-api_key = os.getenv("DEVELOPER_API_KEY")
+DEVELOPER_KEY = os.getenv("DEVELOPER_KEY")
 
 api_service_name = "youtube"
 api_version = "v3"
