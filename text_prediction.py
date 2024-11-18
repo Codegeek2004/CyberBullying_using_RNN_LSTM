@@ -10,7 +10,7 @@ import pickle
 # Download required NLTK resources
 nltk.download('stopwords')
 nltk.download('wordnet')
-nltk.download('punkt')
+nltk.download('punkt_tab')
 
 # Initialize stopwords and lemmatizer
 stop_words = set(stopwords.words('english'))

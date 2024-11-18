@@ -3,30 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comment Classification</title>
+    <title>Cyberbullying Prediction</title>
 </head>
 <body>
-    <h1>Cyberbullying Comment Classification</h1>
-    <form method="POST">
-        <label for="comment">Enter a Comment:</label>
-        <input type="text" id="comment" name="comment" required>
-        <button type="submit">Classify</button>
+    <h1>Cyberbullying Detection</h1>
+    <form method="POST"> <!-- Form should use POST to send data -->
+        <label for="text">Enter Text:</label>
+        <input type="text" id="text" name="text" required> <!-- Input must have a `name` -->
+        <button type="submit">Predict</button>
     </form>
 
-    {% if result %}
-    <h2>Results:</h2>
-    <table border="1">
-        <tr>
-            <th>Comment</th>
-            <th>Prediction (Logistic Regression)</th>
-            <th>Prediction (Random Forest)</th>
-        </tr>
-        <tr>
-            <td>{{ result.comment }}</td>
-            <td>{{ result.prediction_lr }}</td>
-            <td>{{ result.prediction_rf }}</td>
-        </tr>
-    </table>
+    {% if result is not none %}
+    <h2>Prediction Result: {{ result }}</h2>
     {% endif %}
 </body>
 </html>
