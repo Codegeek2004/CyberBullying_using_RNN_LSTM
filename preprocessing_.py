@@ -33,7 +33,7 @@ if 'classification' not in df.columns or 'text' not in df.columns:
 # Create classification DataFrame and save count
 df3 = pd.DataFrame(data={'classification': df['classification']})
 count_per_column = df3.apply(pd.Series.value_counts).fillna(0)
-df3.to_csv('classification.csv', index=False)
+#df3.to_csv('classification.csv', index=False)
 
 # Preprocess the text
 df2 = pd.DataFrame(data={'comments': df['text'], 'new_comments': df['text']})
