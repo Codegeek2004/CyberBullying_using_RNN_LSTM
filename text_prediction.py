@@ -10,7 +10,7 @@ import pickle
 # Download required NLTK resources
 nltk.download('stopwords')
 nltk.download('wordnet')
-nltk.download('punkt_tab')
+nltk.download('punkt')
 
 # Initialize stopwords and lemmatizer
 stop_words = set(stopwords.words('english'))
@@ -64,8 +64,7 @@ def predict_cyberbullying(text):
     prediction = loaded_model.predict(text_vector)  # 0 = Not Cyberbullying, 1 = Cyberbullying
 
     # Return the result as either 'Cyberbullying' or 'Not Cyberbullying'
-    return "Cyberbullying" if prediction == 1 else "Not Cyberbullying"
-
-# Get user input and predict
-text = input("Enter The Comment: ")
-print(predict_cyberbullying(text))
+    if prediction == 1 :
+        return "Cyberbullying" 
+    if prediction == 0:
+        return "Not Cyberbullying"  

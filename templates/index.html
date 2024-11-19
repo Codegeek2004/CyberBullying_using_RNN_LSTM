@@ -3,18 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyberbullying Prediction</title>
+    <title>Cyberbullying Detection</title>
+    <!-- Corrected path for CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">  
 </head>
 <body>
-    <h1>Cyberbullying Detection</h1>
-    <form method="POST"> <!-- Form should use POST to send data -->
-        <label for="text">Enter Text:</label>
-        <input type="text" id="text" name="text" required> <!-- Input must have a `name` -->
-        <button type="submit">Predict</button>
-    </form>
+    <div class="container">
+        <h1 class="title">Cyberbullying Detection</h1>
 
-    {% if result is not none %}
-    <h2>Prediction Result: {{ result }}</h2>
-    {% endif %}
+        <!-- Form for text input -->
+        <form method="POST" class="form">
+            <label for="text" class="label">Enter Text:</label>
+            <input type="text" id="text" name="text" value="{{ text_input }}" class="input-field" required>
+            <button type="submit" class="submit-btn">Predict</button>
+        </form>
+
+        <!-- Display the prediction result if available -->
+        {% if result is not none %}
+        <div class="result">
+            <h2>Prediction Result</h2>
+            <p>{{ result }}</p>
+        </div>
+        {% endif %}
+    </div>
 </body>
 </html>

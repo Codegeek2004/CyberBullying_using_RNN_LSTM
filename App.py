@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request
-from text_prediction import predict_cyberbullying
+from flask import Flask, request, render_template
+from text_prediction import predict_cyberbullying  # Assuming this function exists
 
 app = Flask(__name__)
 
@@ -10,9 +10,15 @@ def index():
     On POST, predict cyberbullying for the input text.
     """
     result = None
-    if request.method == "POST":
-        # Correctly access the form data using the input's `name` attribute
-        text = request.form.get('text')  # Use 'text', which matches the input field name
-        result = predict_cyberbullying(text)  # Predict cyberbullying
+    text_input = ""  # Default empty value for text input
 
-    return render_template("index.html", result=result)
+    if request.method == "POST":
+        text_input = request.form.get("text")  # Get the text input from the form
+        if text_input:  # Ensure text is not empty
+            result = predict_cyberbullying(text_input)  # Predict cyberbullying
+
+    # Return the result and the text input to the template
+    return render_template("index.html", result=result, text_input=text_input)
+
+if __name__ == "__main__":
+    app.run(debug=True)  # Run the app in debug mode

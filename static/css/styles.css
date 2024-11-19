@@ -1,0 +1,90 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Main container for content */
+.container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    text-align: center;
+}
+
+/* Title styling */
+.title {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Label styling */
+.label {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Input field styling */
+.input-field {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    color: #333;
+    transition: border 0.3s ease;
+}
+
+/* Focus effect for input field */
+.input-field:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+/* Submit button styling */
+.submit-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Submit button hover effect */
+.submit-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Result section styling */
+.result {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.result h2 {
+    margin-bottom: 10px;
+    color: #3498db;
+}
