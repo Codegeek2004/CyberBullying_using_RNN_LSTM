@@ -1,4 +1,4 @@
-import re
+'''import re
 import contractions
 import emoji
 import nltk
@@ -41,7 +41,7 @@ def preprocess_text(text):
     return ' '.join(text)  # Join the tokens back into a string
 
 # Load the saved model and vectorizer
-with open("rfc.pkl", "rb") as file:
+with open("lstm.pkl", "rb") as file:
     loaded_model = pickle.load(file)
 
 with open('vectorizer.pkl', 'rb') as file:
@@ -68,3 +68,57 @@ def predict_cyberbullying(text):
         return "Cyberbullying" 
     if prediction == 0:
         return "Not Cyberbullying"  
+'''
+
+import re
+import contractions
+import emoji
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
+import pickle
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.preprocessing.text import one_hot
+import tensorflow as tf
+
+# Download required NLTK resources
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('punkt')
+
+# Initialize stopwords and lemmatizer
+stop_words = set(stopwords.words('english'))
+lemmatizer = WordNetLemmatizer()
+
+def preprocess_text(text):
+    """Preprocess the input text."""
+    text = text.lower()
+    text = contractions.fix(text)
+    text = re.sub(r'http\S+|www\S+|https\S+', '', text)
+    text = re.sub(r'\@\w+|\#', '', text)
+    text = emoji.demojize(text)
+    text = re.sub(r'_', ' ', text)
+    text = re.sub(r'[^\w\s]', '', text)
+    text = re.sub(r'\d+', '', text)
+    text = word_tokenize(text)
+    text = [word for word in text if word not in stop_words]
+    text = [lemmatizer.lemmatize(word) for word in text]
+    return ' '.join(text)
+
+# Load model and vectorizer
+loaded_model = tf.keras.models.load_model("lstm.h5")  # Assuming TensorFlow model
+print("Model loaded successfully")
+
+# Parameters for encoding and padding
+vocab_size = 5000
+max_length = 100
+
+def predict_cyberbullying(text):
+    """Predict whether the text contains cyberbullying."""
+    cleaned_text = preprocess_text(text)
+    encoded_text = one_hot(cleaned_text, vocab_size)
+    padded_text = pad_sequences([encoded_text], maxlen=max_length, padding='post')
+    prediction = loaded_model.predict(padded_text)
+    return "Cyberbullying" if prediction[0][0] >= 0.5 else "Not Cyberbullying"
+
