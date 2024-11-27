@@ -1,5 +1,5 @@
+import webbrowser  # Import webbrowser module
 from flask import Flask, render_template, request
-import webbrowser
 from text_prediction_rnn import predict_cyberbullying  # Import your prediction function
 
 app = Flask(__name__)
@@ -19,7 +19,7 @@ def index():
     # Render the index page with or without the result
     return render_template('index.html', result=result, text_input=user_input)
 
+
 if __name__ == '__main__':
-    # Open the app in the browser automatically before starting the server
-    webbrowser.open('http://127.0.0.1:5000/', new=2)  # 'new=2' opens in a new tab or window
-    app.run(debug=True)
+    # Delay the browser opening slightly to ensure the server is running
+    app.run(debug=False)

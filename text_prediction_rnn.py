@@ -15,14 +15,23 @@ import re
 import contractions
 import emoji
 import nltk
-nltk.download('stopwords')
-nltk.download('wordnet')
-nltk.download('punkt_tab')
+#nltk.download('stopwords')
+#nltk.download('wordnet')
+#nltk.download('punkt_tab')
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 
 #pip install tensorflow
+
+import pickle
+from tensorflow.keras.models import load_model
+
+# Load the model
+model = load_model('rnn_model.keras')
+
+with open('tokenizer_rnn.pkl', 'rb') as f:
+    tokenizer = pickle.load(f)
 
 stop_words = set(stopwords.words('english'))
 lemmatizer = WordNetLemmatizer()
@@ -46,14 +55,7 @@ def preprocess_text(text):
 # text = "You’re such a failure, it’s embarrassing to watch."
 # text = "I don’t agree with your opinion, but I respect it."
 
-import pickle
-from tensorflow.keras.models import load_model
 
-# Load the model
-model = load_model('rnn_model.keras')
-
-with open('tokenizer_rnn.pkl', 'rb') as f:
-    tokenizer = pickle.load(f)
 
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 

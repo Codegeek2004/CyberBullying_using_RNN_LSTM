@@ -11,7 +11,7 @@
         <h1 class="title">Cyberbullying Detection</h1>
 
         <!-- Form for text input -->
-        <form method="POST" action="{{ url_for('index') }}" class="form">
+        <form id="predictionForm" method="POST" action="{{ url_for('index') }}" class="form">
             <label for="text" class="label">Enter Text:</label>
             <input type="text" id="text" name="text" value="{{ text_input if text_input else '' }}" class="input-field" required>
             <button type="submit" class="submit-btn">Predict</button>
@@ -25,5 +25,12 @@
         </div>
         {% endif %}
     </div>
+
+    <script>
+        // Prevent multiple form submissions
+        document.getElementById('predictionForm').onsubmit = function() {
+            this.querySelector('button[type="submit"]').disabled = true;
+        };
+    </script>
 </body>
 </html>
