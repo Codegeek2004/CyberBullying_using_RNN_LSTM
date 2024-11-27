@@ -1,12 +1,12 @@
-from flask import Flask, render_template, request
 import webbrowser
-from text_prediction_rnn import predict_cyberbullying  # Make sure this import matches your actual file
+from flask import Flask, render_template, request
+from text_prediction_rnn import predict_cyberbullying  # Ensure this import matches your actual file
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # Render the index.html file when the user visits the root URL
+    # Render the initial page with a form for user input
     return render_template('index.html')
 
 @app.route('/predict', methods=['POST'])
@@ -21,6 +21,6 @@ def predict():
     return render_template('index.html', result=result, text_input=user_input)
 
 if __name__ == '__main__':
-    # Open the app in the browser automatically when the server starts
+    # Open the app in the browser automatically before starting the server
     webbrowser.open('http://127.0.0.1:5000/')
     app.run(debug=True)
