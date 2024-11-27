@@ -106,3 +106,7 @@ plot_confusion_matrix(y_test, y_pred_knn, ['cyberbullying', 'Not cyberbullying']
 with open("rfc.pkl", "wb") as file:
     pickle.dump(rfc, file)
 print("\nRandom Forest model saved!")
+
+with open("rfc.pkl", "wb") as file:
+    pickle.dump(rfc, file)
+print("\nRandom Forest model saved!")
