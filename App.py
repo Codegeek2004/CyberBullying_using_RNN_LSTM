@@ -1,4 +1,3 @@
-import webbrowser  # Import webbrowser module
 from flask import Flask, render_template, request
 from text_prediction_rnn import predict_cyberbullying  # Import your prediction function
 

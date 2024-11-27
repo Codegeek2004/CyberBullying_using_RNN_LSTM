@@ -14,6 +14,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    transition: background-color 0.3s ease; /* Smooth transition for background change */
 }
 
 /* Main container for content */
@@ -25,18 +26,37 @@ body {
     max-width: 500px;
     padding: 30px;
     text-align: center;
+    transition: box-shadow 0.3s ease; /* Smooth transition for box-shadow change */
+}
+
+/* Cyberbullying detected styles */
+body.cyberbullying {
+    background-color: #ffcccc; /* Red background for cyberbullying */
+}
+
+.container.cyberbullying {
+    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.7); /* Red shadow for cyberbullying */
+}
+
+/* Non-cyberbullying styles */
+body.non-cyberbullying {
+    background-color: #ccffcc; /* Green background for non-cyberbullying */
+}
+
+.container.non-cyberbullying {
+    box-shadow: 0 4px 10px rgba(0, 128, 0, 0.7); /* Green shadow for non-cyberbullying */
 }
 
 /* Title styling */
 .title {
-    font-size: 2.5em;
+    font-size: 3em;
     margin-bottom: 20px;
     color: #333;
 }
 
 /* Label styling */
 .label {
-    font-size: 1.2em;
+    font-size: 1.5em;
     color: #555;
     margin-bottom: 10px;
     display: block;
@@ -49,7 +69,7 @@ body {
     margin-bottom: 20px;
     border: 2px solid #ccc;
     border-radius: 8px;
-    font-size: 1em;
+    font-size: 1.2em;
     color: #333;
     transition: border 0.3s ease;
 }
@@ -67,7 +87,7 @@ body {
     padding: 12px 20px;
     border: none;
     border-radius: 8px;
-    font-size: 1.2em;
+    font-size: 1.3em;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -80,8 +100,17 @@ body {
 /* Result section styling */
 .result {
     margin-top: 20px;
-    font-size: 1.2em;
+    font-size: 1.4em;
     color: #333;
+    transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+.result.cyberbullying {
+    color: red; /* Red text for cyberbullying result */
+}
+
+.result.non-cyberbullying {
+    color: green; /* Green text for non-cyberbullying result */
 }
 
 .result h2 {

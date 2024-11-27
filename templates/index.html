@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cyberbullying Detection</title>
+    <!-- Link to styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
-<body>
-    <div class="container">
+<body class="{% if result == 'Cyberbullying' %}cyberbullying{% elif result == 'Not Cyberbullying' %}non-cyberbullying{% endif %}">
+    <div class="container {% if result == 'Cyberbullying' %}cyberbullying{% elif result == 'Not Cyberbullying' %}non-cyberbullying{% endif %}">
         <h1 class="title">Cyberbullying Detection</h1>
 
         <!-- Form for text input -->
@@ -19,7 +20,7 @@
 
         <!-- Display the prediction result if available -->
         {% if result %}
-        <div class="result">
+        <div class="result {% if result == 'Cyberbullying' %}cyberbullying{% elif result == 'Not Cyberbullying' %}non-cyberbullying{% endif %}">
             <h2>Prediction Result</h2>
             <p>{{ result }}</p>
         </div>
@@ -29,7 +30,9 @@
     <script>
         // Prevent multiple form submissions
         document.getElementById('predictionForm').onsubmit = function() {
-            this.querySelector('button[type="submit"]').disabled = true;
+            const submitButton = this.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Processing...';
         };
     </script>
 </body>
