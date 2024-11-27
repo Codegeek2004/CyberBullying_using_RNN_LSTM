@@ -74,5 +74,7 @@ def predict_cyberbullying(text):
     # Return the prediction (example: 1 = cyberbullying, 0 = not)
     return "Cyberbullying" if prediction[0] > 0.5 else "Not Cyberbullying"
 
-text = input("Enter The Comment")
-print(predict_cyberbullying(text))
+if __name__ == "__main__":
+    user_input = input("Enter the comment: ")
+    result = predict_cyberbullying(user_input)
+    print(result)

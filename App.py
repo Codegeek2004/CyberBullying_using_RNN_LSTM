@@ -1,5 +1,4 @@
 from flask import Flask, render_template
-from text_prediction_rnn import predict_cyberbullying
 import webbrowser
 
 app = Flask(__name__)
@@ -8,6 +7,9 @@ app = Flask(__name__)
 def index():
     # Render the index.html file
     return render_template('index.html')
+
+from text_prediction_rnn import predict_cyberbullying
+
 
 if __name__ == '__main__':
     # Open the app in the browser automatically when the server starts
