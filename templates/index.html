@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cyberbullying Detection</title>
     <!-- Corrected path for CSS file -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">  
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <div class="container">
         <h1 class="title">Cyberbullying Detection</h1>
 
         <!-- Form for text input -->
-        <form method="POST" class="form">
+        <form method="POST" action="/predict" class="form">
             <label for="text" class="label">Enter Text:</label>
             <input type="text" id="text" name="text" value="{{ text_input }}" class="input-field" required>
             <button type="submit" class="submit-btn">Predict</button>
@@ -23,6 +23,10 @@
         <div class="result">
             <h2>Prediction Result</h2>
             <p>{{ result }}</p>
+        </div>
+        {% else %}
+        <div class="result">
+            <p>Please enter text to get a prediction.</p>
         </div>
         {% endif %}
     </div>
