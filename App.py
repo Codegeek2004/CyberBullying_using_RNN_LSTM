@@ -1,5 +1,11 @@
 from flask import Flask, render_template, request
 from text_prediction_rnn import predict_cyberbullying  # Import your prediction function
+import nltk
+
+# Download necessary NLTK packages
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('punkt')
 
 app = Flask(__name__)
 
