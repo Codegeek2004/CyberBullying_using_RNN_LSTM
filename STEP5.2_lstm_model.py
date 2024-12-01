@@ -7,7 +7,7 @@
 import pandas as pd
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.utils import to_categorical
-from tensorflow.keras.preprocessing.text import one_hot
+from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Embedding, LSTM, Dense
 from tensorflow.keras.optimizers import Adam
@@ -23,7 +23,7 @@ df = pd.read_csv('preprocessed_data.csv', encoding='latin1')
 df.head()
 
 # Assuming the CSV has columns 'new_comments' and 'classification'
-texts = df['text'].astype(str).values
+texts = df['new_comments'].astype(str).values  # Fix the column name to 'new_comments'
 labels = df['classification'].values
 
 # Step 3: Preprocess labels
@@ -34,15 +34,19 @@ labels = label_encoder.fit_transform(labels)  # Converts labels to 0/1 if they a
 vocab_size = 10000  # Adjust this depending on your dataset
 max_len = 100      # Maximum length of each input sequence
 
-# **PRE - PADDING**
-X_encoded = [one_hot(words, vocab_size) for words in df['text']]  # Encoding the text
+# **TOKENIZATION**
+tokenizer = Tokenizer(num_words=vocab_size, oov_token='<OOV>')  # Initialize tokenizer with vocab size
+tokenizer.fit_on_texts(texts)  # Fit tokenizer on texts
+
+X_encoded = tokenizer.texts_to_sequences(texts)  # Encoding the text
 X_padded_pre = pad_sequences(X_encoded, padding='pre', maxlen=max_len)  # Padding sequences
 
 # Train-test split
 X_train_pre, X_test_pre, y_train_pre, y_test_pre = train_test_split(X_padded_pre, labels, test_size=0.2, random_state=42)
 
+# LSTM Model
 lstm_pre = Sequential()
-lstm_pre.add(Embedding(input_dim=vocab_size, output_dim=128))
+lstm_pre.add(Embedding(input_dim=vocab_size, output_dim=128, input_length=max_len))
 lstm_pre.add(LSTM(64, dropout=0.2, recurrent_dropout=0.2))
 lstm_pre.add(Dense(1, activation='sigmoid'))  # Output layer for binary classification
 
@@ -78,7 +82,9 @@ plt.ylabel('True')
 plt.title('Confusion Matrix')
 plt.show()
 
+# Classification report
 print(classification_report(y_test_pre, y_pred_pre, target_names=class_names))
+
 
 # **PADDING - POST (COMMENTED OUT)**
 
