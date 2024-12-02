@@ -1,7 +1,3 @@
-Here's the updated **README.md** with the specified file extensions:  
-
----
-
 # **Cyberbullying Comment Classification**  
 
 This project is a web-based application designed to classify comments into two categories: **Cyberbullying** and **Not Cyberbullying**. Using advanced preprocessing techniques and a combination of traditional and deep learning models, the application analyzes comments to identify harmful or offensive language.  
