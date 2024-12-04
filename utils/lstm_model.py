@@ -1,5 +1,5 @@
 # Install required packages
-!pip install pandas spacy numpy tensorflow scikit-learn matplotlib seaborn imbalanced-learn --quiet
+#!pip install pandas spacy numpy tensorflow scikit-learn matplotlib seaborn imbalanced-learn --quiet
 
 # Import necessary libraries
 import pandas as pd
